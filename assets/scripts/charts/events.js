@@ -7,11 +7,15 @@ const getCharts = function (event) {
   console.log('get charts working')
   const ticker = $('#ticker').val()
   const option = $('input[name=option]:checked').val()
-  if (store[ticker] && store[ticker][option] && store[ticker][option].financials && store[ticker][option].metrics) {
+  if (!store[ticker]) {
+    store[ticker] = {}
+  }
+  if (!store[ticker][option]) {
+    store[ticker][option] = {}
+  }
+  if (store[ticker][option].financials && store[ticker][option].metrics) {
     ui.showChart(store[ticker][option].financials, store[ticker][option].metrics)
   } else {
-    store[ticker] = {}
-    store[ticker][option] = {}
     console.log(store)
     // console.log(event.target)
     // store.ticker = ($('#ticker').val())
@@ -33,13 +37,16 @@ const getBalanceSheet = function (event) {
   const ticker = event.target.children[1].value
   console.log(ticker)
   const option = $('input[name=option]:checked').val()
-
-  if (store[ticker] && store[ticker][option] && store[ticker][option].balanceSheet && store[ticker][option].metrics) {
+  if (!store[ticker]) {
+    store[ticker] = {}
+  }
+  if (!store[ticker][option]) {
+    store[ticker][option] = {}
+  }
+  if (store[ticker][option].balanceSheet && store[ticker][option].metrics) {
     console.log(store)
     ui.showBalanceSheetChart(store[ticker][option].balanceSheet, store[ticker][option].metrics)
   } else {
-    store[ticker] = {}
-    store[ticker][option] = {}
     $.when(
       api.getBalanceSheetData(ticker, option),
       api.getEnterpriseValue(ticker, option))
