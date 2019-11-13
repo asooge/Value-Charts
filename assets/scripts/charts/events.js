@@ -34,15 +34,17 @@ const getBalanceSheet = function (event) {
   console.log(ticker)
   const option = $('input[name=option]:checked').val()
 
-  $.when(
-    api.getBalanceSheetData(ticker, option),
-    api.getEnterpriseValue(ticker, option)
-  )
-    // .then(data => {
-    //   console.log('getBalanceSheetData', data)
-    //   return data
-    // })
-    .then(ui.showBalanceSheet)
+  if (store[ticker] && store[ticker][option] && store[ticker][option].balanceSheet && store[ticker][option].metrics) {
+    console.log(store)
+    ui.showBalanceSheetChart(store[ticker][option].balanceSheet, store[ticker][option].metrics)
+  } else {
+    store[ticker] = {}
+    store[ticker][option] = {}
+    $.when(
+      api.getBalanceSheetData(ticker, option),
+      api.getEnterpriseValue(ticker, option))
+      .then((data1, data2) => ui.showBalanceSheet(data1, data2, ticker, option))
+  }
 }
 
 module.exports = {

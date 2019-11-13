@@ -55,11 +55,14 @@ const showData = function (data1, data2, ticker, option) {
 }
 
 // send balance sheet data to showBalanceSheetChart function
-const showBalanceSheet = function (data1, data2) {
-  const financials = data1[0].financials
+const showBalanceSheet = function (data1, data2, ticker, option) {
+  const balanceSheet = data1[0].financials
   const metrics = data2[0].metrics
-  console.log(financials)
-  showBalanceSheetChart(financials, metrics)
+  store[ticker][option].balanceSheet = balanceSheet
+  store[ticker][option].metrics = metrics
+  console.log(store)
+  console.log(balanceSheet)
+  showBalanceSheetChart(balanceSheet, metrics)
 }
 
 // create new chart from financial and valuation data
@@ -114,36 +117,36 @@ const showChart = function (financials, metrics) {
   // display Cash "Cash and cash equivalents"
   // display Shareholder Equity "Total shareholders equity"
 
-const showBalanceSheetChart = function (financials, metrics) {
+const showBalanceSheetChart = function (balanceSheet, metrics) {
   const ctx = document.getElementById('myChart').getContext('2d')
   const myChart = new chart.Chart(ctx, {
     type: 'bar',
     data: {
-      labels: getLabels(financials),
+      labels: getLabels(balanceSheet),
       datasets: [{
         label: 'total assets',
-        data: getTotalAssets(financials),
+        data: getTotalAssets(balanceSheet),
         backgroundColor: 'red',
         borderColor: '',
         borderWidth: 1
       },
       {
         label: 'total liabilities',
-        data: getTotalLiabilities(financials),
+        data: getTotalLiabilities(balanceSheet),
         backgroundColor: 'black',
         borderColor: '',
         borderWidth: 1
       },
       {
         label: 'total cash',
-        data: getTotalCash(financials),
+        data: getTotalCash(balanceSheet),
         backgroundColor: 'blue',
         borderColor: '',
         borderWidth: 1
       },
       {
         label: 'shareholder equity',
-        data: getShareholderEquity(financials),
+        data: getShareholderEquity(balanceSheet),
         backgroundColor: 'orange',
         borderColor: '',
         borderWidth: 1
@@ -166,5 +169,6 @@ const showBalanceSheetChart = function (financials, metrics) {
 module.exports = {
   showData,
   showBalanceSheet,
-  showChart
+  showChart,
+  showBalanceSheetChart
 }
