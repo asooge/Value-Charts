@@ -7,15 +7,22 @@ const getCharts = function (event) {
   console.log('get charts working')
   const ticker = $('#ticker').val()
   const option = $('input[name=option]:checked').val()
-  // console.log(event.target)
-  // store.ticker = ($('#ticker').val())
-  // console.log(store)
-  console.log(option)
-  $.when(
-    api.getFinancials(ticker, option),
-    api.getEnterpriseValue(ticker, option)
-  )
-    .then(ui.showData)
+  if (store[ticker] && store[ticker][option] && store[ticker][option].financials && store[ticker][option].metrics) {
+    ui.showChart(store[ticker][option].financials, store[ticker][option].metrics)
+  } else {
+    store[ticker] = {}
+    store[ticker][option] = {}
+    console.log(store)
+    // console.log(event.target)
+    // store.ticker = ($('#ticker').val())
+    // console.log(store)
+    console.log(option)
+    $.when(
+      api.getFinancials(ticker, option),
+      api.getEnterpriseValue(ticker, option)
+    )
+      .then((data1, data2) => ui.showData(data1, data2, ticker, option))
+  }
 }
 
 // get Balance sheet data and send to ui.showBalanceSheet

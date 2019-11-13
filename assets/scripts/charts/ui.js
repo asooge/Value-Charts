@@ -1,5 +1,6 @@
 const financialsTemplate = require('../templates/chart.handlebars')
 const chart = require('chart.js')
+const store = require('../store.js')
 
 // select financial metrics from the dataset
 const getLabels = function (financials) {
@@ -33,7 +34,11 @@ const getShareholderEquity = function (financials) {
 }
 
 // send financial data to showChart function
-const showData = function (data1, data2) {
+const showData = function (data1, data2, ticker, option) {
+  store[ticker][option].financials = data1[0].financials
+  store[ticker][option].metrics = data2[0].metrics
+  console.log(store)
+  console.log(ticker)
   console.log('showData')
   console.log(data1[0].financials)
   console.log(data2[0].metrics)
@@ -160,5 +165,6 @@ const showBalanceSheetChart = function (financials, metrics) {
 }
 module.exports = {
   showData,
-  showBalanceSheet
+  showBalanceSheet,
+  showChart
 }
