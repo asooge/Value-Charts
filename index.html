@@ -16,7 +16,7 @@
 
       <form id="lookup">
         <label for="ticker">Enter symbol:</label>
-        <input type="text" id="ticker" placeholder="enter ticker">
+        <input type="text" id="ticker" placeholder="enter ticker" required=true>
         <button type="submit" id="submit">Submit</button>
 
         <input type="radio" name="option" value="?period=quarter"> Quarterly
@@ -27,11 +27,11 @@
       <section id="balance-sheet-section">
         <form id="balance-sheet-lookup">
           <label for="ticker">Enter symbol:</label>
-          <input type="text" id="ticker" placeholder="enter ticker">
+          <input type="text" id="ticker" placeholder="enter ticker" required=true>
           <button type="submit" id="submit">Submit</button>
 
-          <input type="radio" name="option" value="?period=quarter"> Quarterly
-          <input type="radio" name="option" value=""> Annual
+          <input type="radio" name="balance-option" value="?period=quarter"> Quarterly
+          <input type="radio" name="balance-option" value=""> Annual
         </form>
 
       </section>

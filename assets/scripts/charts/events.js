@@ -36,7 +36,7 @@ const getBalanceSheet = function (event) {
   // grab the #ticker element value from the event object
   const ticker = event.target.children[1].value
   console.log(ticker)
-  const option = $('input[name=option]:checked').val()
+  const option = $('input[name=balance-option]:checked').val()
   if (!store[ticker]) {
     store[ticker] = {}
   }

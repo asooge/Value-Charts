@@ -105,7 +105,7 @@ const showChart = function (financials, metrics) {
       scales: {
         xAxes: [{ stacked: true }],
         yAxes: [
-          { stacked: true }
+          { stacked: false }
         ]}
     }
   })
