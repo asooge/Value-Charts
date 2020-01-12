@@ -67,6 +67,8 @@ const showBalanceSheet = function (data1, data2, ticker, option) {
 
 // create new chart from financial and valuation data
 const showChart = function (financials, metrics) {
+  $('#chart-container').html('')
+  $('#chart-container').append('<canvas id="myChart" width="800" height="600"></canvas>')
   const ctx = document.getElementById('myChart').getContext('2d');
   const myChart = new chart.Chart(ctx, {
     type: 'bar',
@@ -118,6 +120,8 @@ const showChart = function (financials, metrics) {
   // display Shareholder Equity "Total shareholders equity"
 
 const showBalanceSheetChart = function (balanceSheet, metrics) {
+  $('#chart-container').html('')
+  $('#chart-container').append('<canvas id="myChart" width="800" height="600"></canvas>')
   const ctx = document.getElementById('myChart').getContext('2d')
   const myChart = new chart.Chart(ctx, {
     type: 'bar',

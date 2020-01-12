@@ -15,30 +15,31 @@
       <h1>Value Charts</h1>
 
       <form id="lookup">
-        <label for="ticker">Enter symbol:</label>
+        <label for="ticker">View Income Statement:</label>
         <input type="text" id="ticker" placeholder="enter ticker" required=true>
         <button type="submit" id="submit">Submit</button>
 
-        <input type="radio" name="option" value="?period=quarter"> Quarterly
+        <input type="radio" name="option" value="?period=quarter" checked=true> Quarterly
         <input type="radio" name="option" value=""> Annual
       </form>
 
       <!-- section for Balance Sheet analysis -->
       <section id="balance-sheet-section">
         <form id="balance-sheet-lookup">
-          <label for="ticker">Enter symbol:</label>
+          <label for="ticker">View Balance Sheet:</label>
           <input type="text" id="ticker" placeholder="enter ticker" required=true>
           <button type="submit" id="submit">Submit</button>
 
           <input type="radio" name="balance-option" value="?period=quarter"> Quarterly
-          <input type="radio" name="balance-option" value=""> Annual
+          <input type="radio" name="balance-option" value="" checked=true> Annual
         </form>
 
       </section>
 
 
-
-      <canvas id="myChart" width="800" height="600"></canvas>
+      <div id="chart-container">
+        <canvas id="myChart" width="800" height="600"></canvas>
+      </div>
 
     </body>
 </html>
