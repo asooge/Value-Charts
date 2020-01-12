@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Value Charts</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <h1>Value Charts</h1>
+
+      <form id="lookup">
+        <label for="ticker">View Income Statement:</label>
+        <input type="text" id="ticker" placeholder="enter ticker" required=true>
+        <button type="submit" id="submit">Submit</button>
+
+        <input type="radio" name="option" value="?period=quarter" checked=true> Quarterly
+        <input type="radio" name="option" value=""> Annual
+      </form>
+
+      <!-- section for Balance Sheet analysis -->
+      <section id="balance-sheet-section">
+        <form id="balance-sheet-lookup">
+          <label for="ticker">View Balance Sheet:</label>
+          <input type="text" id="ticker" placeholder="enter ticker" required=true>
+          <button type="submit" id="submit">Submit</button>
+
+          <input type="radio" name="balance-option" value="?period=quarter"> Quarterly
+          <input type="radio" name="balance-option" value="" checked=true> Annual
+        </form>
+
+      </section>
+
+
+      <div id="chart-container">
+        <canvas id="myChart" width="800" height="600"></canvas>
+      </div>
+
+    </body>
+</html>
