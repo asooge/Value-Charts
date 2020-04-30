@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "helmet-csp": "^2.9.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "node": "^12.11.0",
     "popper.js": "^1.14.3"
   },
